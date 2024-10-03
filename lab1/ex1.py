@@ -5,7 +5,6 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder, MinMaxScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score
 from scipy import stats
 
 # Ex1: Load the data
@@ -27,6 +26,7 @@ df_mean_filled = df.fillna({'Data_value': df['Data_value'].mean()})
 df_median_filled = df.fillna({'Data_value': df['Data_value'].median()})
 df_specific_filled = df.fillna({'Suppressed': 'Not Available'})
 
+df_mean_filled.head()
 # df_ffill = df.fillna(method='ffill')
 # df_bfill = df.fillna(method='bfill')
 
@@ -79,7 +79,7 @@ else:
     # print("X_train.shape", X_train.shape)
 
 
-    # Ex7: Building the preprocessing pipeline
+# Ex7: Building the preprocessing pipeline
     numerical_features = ['Period', 'Magnitude']
     categorical_features = ['STATUS', 'UNITS', 'Subject', 'Group']
 
@@ -110,4 +110,4 @@ else:
 
 
     test_score = model_pipeline.score(X_test, y_test)
-    print(f"R-squared score on test data: {test_score:.2f}")
+    print(test_score)
